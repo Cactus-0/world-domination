@@ -1,0 +1,25 @@
+@import './constants.scss';
+@import './base-styles.scss';
+@import './mixins.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html, body {
+    position: absolute;
+    background-color: $background-color;
+    margin: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+body {
+    $body-padding: 50px;
+    min-height: calc(100vh - 2 * $body-padding);
+    padding: $body-padding;
+}
+
+* {
+    font-family: $default-font;
+    color: $secondary-color;
+}

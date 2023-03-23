@@ -1,0 +1,35 @@
+<div *mcRerender="trigger">
+    <p class="greeting" *ngIf="gameService.isAdmin; else adminGreeting">
+        {{ username }}, вы - <b>координатор ООН</b>
+        <br />
+        Дождитесь подключения всех игроков, а затем начините игру
+    </p>
+    <ng-template #adminGreeting>
+        <p class="greeting">
+            <ng-template *ngIf="gameService.gameState?.admin">
+                Координатор ООН: {{ gameService.gameState?.admin }}
+                <br />
+            </ng-template>
+            {{ username }}, присоединитесь к одной из стран ниже:
+        </p>
+    </ng-template>
+    <wd-loading *ngIf="!gameState; else content" />
+    <ng-template #content>
+        <ul>
+            <li *ngFor="let country of gameState!.countries">
+                <wd-country-card [country-flag-src]="country.flagUrl" [country-name]="country.name"
+                    class="country-card">
+                    <button caption class="join" *ngIf="!gameService.isAdmin && country.name !== username"
+                        (click)="clientControls.changeCountry(country.name)">
+                        Присоединится
+                    </button>
+                </wd-country-card>
+            </li>
+        </ul>
+    </ng-template>
+    <div class="button-wrapper">
+        <button class="start-game m-auto-horizontal" *ngIf="gameService.isAdmin" (click)="adminControls.startGame()">
+            Начать игру
+        </button>
+    </div>
+</div>

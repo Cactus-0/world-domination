@@ -1,0 +1,26 @@
+{
+    "include": [ "server/**/*", "types/**/*", "shared-lib/**/*" ],
+    "compilerOptions": {
+        "composite": true,
+        "lib" : [ "esnext" ],
+        "target": "esnext",
+        "resolveJsonModule": true,
+        "module": "NodeNext",
+        "strict": true,
+        "baseUrl": "server",
+        "rootDirs": [ "server", "shared-lib" ],
+        "typeRoots": [ "node_modules/@types", "./types" ],
+        "outDir": "dist",
+        "inlineSourceMap": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
+        "incremental": true,
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "plugins": [{ "transform": "ts-transform-paths" }],
+        "paths": {
+            "@/*": [ "./*" ],
+            "@shared/*": [ "../shared-lib/*" ],
+            "@utils/*": [ "../shared-lib/utils/*" ]
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<h1>Мировое господство</h1>
+
+<wd-global-state />
+
+<div *ngIf="gameService.isAdmin; else clientInterface" class="admin-controls">
+    <button (click)="forcePhaseSkip()">Завершить фазу</button>
+    <wd-country class="country" *ngFor="let country of gameService.gameState?.countries"
+        [country-info]="country" [with-cities]="true"/>
+</div>
+
+<ng-template #clientInterface>
+    <wd-country class="country" [country-info]="client.country!" [with-cities]="true"/>
+    <wd-country class="country" *ngFor="let country of client.anotherCountries()"
+        [country-info]="country" [with-cities]="true"/>
+</ng-template>

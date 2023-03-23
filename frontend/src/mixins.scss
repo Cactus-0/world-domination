@@ -1,0 +1,22 @@
+@use 'sass:color';
+
+@mixin click-gradient($base-color, $step: 10%, $property: background-color, $transition: 0.1s, $direction: 'darker') {
+    transition: $transition;
+    #{$property}: $base-color;
+    
+    &:hover {
+        @if $direction == 'darker' {
+            #{$property}: darken($base-color, $step);
+        } @else {
+            #{$property}: lighten($base-color, $step);
+        }
+    }
+
+    &:active {
+        @if $direction == 'darker' {
+            #{$property}: darken($base-color, 2 * $step);
+        } @else {
+            #{$property}: lighten($base-color, 2 * $step);
+        }
+    }
+}

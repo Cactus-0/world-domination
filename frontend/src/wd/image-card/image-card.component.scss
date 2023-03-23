@@ -1,0 +1,11 @@
+.card {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    .title {
+        font-size: larger;
+        text-align: center;
+    }
+}

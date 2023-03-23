@@ -1,0 +1,63 @@
+@import './constants.scss';
+@import './mixins.scss';
+
+input {
+    background-color: $background-color;
+
+    &::placeholder {
+        color: $disabled-elements-color;
+    }
+}
+
+.base-box {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: $primary-color;
+}
+
+button {
+    @include click-gradient($highlight-color, 15%, background-color, .3s);
+    
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.m-auto-horizontal {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.m-auto-vertical {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.error-message {
+    color: red;
+
+    &::before {
+        content: '!';
+        min-width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        padding: 2px 9px;
+    }
+}
+
+.disabled {
+    color: $disabled-elements-color;
+    pointer-events: none;
+
+    img {
+        filter: grayscale(75%);
+    }
+}
+
+.disabled * {
+    @extend .disabled;
+}

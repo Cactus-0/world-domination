@@ -1,0 +1,14 @@
+<wd-image-card [title]="countryName">
+    <img image width="250" height="100" [src]="countryFlagUrl" [alt]="countryName"/>
+    <div caption class="description">
+        <span class="disabled" *ngIf="!gameService.playersFor(countryName)?.length; else players">
+            Нет игроков
+        </span>
+        <ng-template #players>
+            <span>
+                {{ playersListFor(countryName) }}
+            </span>
+        </ng-template>
+        <ng-content select="[caption]"/>
+    </div>
+</wd-image-card>

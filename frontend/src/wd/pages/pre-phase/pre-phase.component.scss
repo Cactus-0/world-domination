@@ -1,0 +1,40 @@
+.greeting {
+    font-size: large;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+
+    li {
+        position: relative;
+        min-width: 250px;
+        margin-right: 20px;
+
+        .country-card {
+            max-width: 250px;
+        }
+
+        .description {
+            padding: 0 10px;
+            display: flex;
+            flex-direction: column;
+            
+            span {
+                padding: 0;
+                margin: 10px 0;
+            }
+        }
+    }
+}
+
+.button-wrapper {
+    .start-game {
+        font-size: large;
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

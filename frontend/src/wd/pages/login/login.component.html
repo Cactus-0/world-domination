@@ -1,0 +1,21 @@
+<form [formGroup]="form" class="wd-form base-box" (ngSubmit)="submit()">
+    <h2 class="title">Вход</h2>
+    <div class="field">
+        <input #usernameInput id="wd-form-field-username" type="text" formControlName="username" name="username"
+            placeholder="Имя пользователя...">
+        <div
+            *ngIf="(form.controls.username.touched || form.controls.username.dirty) && form.controls.username.invalid"
+        >
+            <span class="error-message" *ngIf="form.controls.username.errors?.['required']">
+                Введите имя пользователя
+            </span>
+            <span class="error-message" *ngIf="form.controls.username.errors?.['minlength']">
+                Длина имени должна больше, чем 2 символа
+            </span>
+            <span class="error-message" *ngIf="form.controls.username.errors?.['maxlength']">
+                Длина имени должна меньше, чем 32 символа
+            </span>
+        </div>
+    </div>
+    <button type="submit" class="m-auto-horizontal">Присоединиться к игре</button>
+</form>

@@ -1,0 +1,1 @@
+type Page = GamePhase | 'login';

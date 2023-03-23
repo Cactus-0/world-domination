@@ -1,0 +1,29 @@
+<div class="base-box">
+    <h2>{{ info.name }}</h2>
+    <p>
+        Уровень жизни: {{ info.averageLifeLevel * 100 | number }}%
+    </p>
+    <p class="private" *ngIf="info.private">
+        Ядерных бомб: {{ info.private.nuclearBombs }} <br />
+        Бюджет: {{ info.private!.budget }} &#8372; <br />
+        Уровень экологии: {{ info.private!.ecology * 100 | number }}% <br />
+        Ежегодный доход: {{ perYearIncome }} &#8372;/год
+    </p>
+</div>
+<div class="cities" *ngIf="withCities">
+    <div class="base-box city" *ngFor="let city of info.cities">
+        <h3 [class.disabled]="city.ruined">{{ city.name }}</h3>
+        <p *ngIf="city.ruined; else notRuined" class="disabled">
+            Город разрушен
+        </p>
+        <ng-template #notRuined>
+            <p>Город цел</p>
+        </ng-template>
+        <p>Уровень жизни: {{ city.lifeLevel * 100 }}%</p>
+        <p *ngIf="city.private">
+            Уровень развития: {{ city.private.developmentLevel * 100 }}% <br />
+            Ежегодный доход: {{ city.private.perYearIncome }} &#8372;/год <br />
+            Город {{ city.private.hasNukeShield ? '' : 'не' }} защищён <br />
+        </p>
+    </div>
+</div>

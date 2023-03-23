@@ -1,0 +1,7 @@
+<div [ngSwitch]="phase">
+    <wd-login-page *ngSwitchCase="'login'" (on-logged-in)="startPrePhase()"/>
+    <wd-pre-phase-page *ngSwitchCase="'pre-phase'"/>
+    <wd-team-conversation-page *ngSwitchCase="'team-conversation'"/>
+    <wd-global-conversation-page *ngSwitchCase="'global-conversation'"/>
+    <wd-end-page *ngSwitchCase="'end'"/>
+</div>

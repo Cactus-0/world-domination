@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="зиг хайль зиг хайль зиг хайль" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#424241;}
+	.st2{fill:#FFED00;stroke:#000000;stroke-miterlimit:10;}
+	.st3{fill:#FFFFFF;stroke:#424241;stroke-width:2;stroke-miterlimit:10;}
+</style>
+<ellipse transform="matrix(0.7071 -0.7071 0.7071 0.7071 -26.5304 137.2396)" class="st0" cx="152.4" cy="100.64" rx="110.67" ry="48.4"/>
+<path class="st1" d="M12.79,174.22c2.45,1.9,13.41,13.33,13.41,13.33l46.83-15.56l9.76-11.02l-14.71-13.42L12.79,174.22z"/>
+<path class="st1" d="M86.39,242.15c-2.11-2.27-14.46-12.18-14.46-12.18l11.37-48.02l10.11-10.69l14.67,13.47L86.39,242.15z"/>
+<circle class="st2" cx="152.4" cy="100.64" r="37.5"/>
+<circle class="st3" cx="152.4" cy="100.64" r="37.5"/>
+<path class="st1" d="M152.4,100.64h37.5c0,6.58-1.73,13.05-5.02,18.75c-3.29,5.7-8.02,10.43-13.72,13.73L152.4,100.64z"/>
+<path class="st1" d="M152.4,100.64l-18.75-32.48c5.7-3.29,12.17-5.02,18.75-5.02s13.05,1.73,18.75,5.02L152.4,100.64z"/>
+<path class="st1" d="M152.4,100.64l-18.75,32.48c-5.7-3.29-10.43-8.02-13.73-13.72c-3.29-5.7-5.02-12.17-5.02-18.75L152.4,100.64z"
+	/>
+<circle class="st0" cx="152.4" cy="100.64" r="12.5"/>
+<circle class="st1" cx="152.4" cy="100.64" r="7.5"/>
+</svg>

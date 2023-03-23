@@ -1,0 +1,10 @@
+<div class="base-box global-state">
+    <p>Год: {{ state.year }}</p>
+    <p>Фаза: {{ phase }}</p>
+    <p>
+        Координатор ООН: {{ state.admin }}
+        <span *ngIf="state.admin === username">
+            (это вы)
+        </span>
+    </p>
+</div>

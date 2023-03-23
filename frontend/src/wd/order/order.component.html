@@ -1,0 +1,69 @@
+<div class="base-box vals">
+    <p class="order-price">
+        Стоимость приказа: {{ price }} &#8372;
+        <span class="error-message" *ngIf="price > client.country!.private!.budget">
+            Приказ не будет исполнен, если его стоимость превысит бюджет!
+        </span>
+    </p>
+    <div class="order-field" *ngFor="let item of client.order | keyvalue">
+        <div *ngIf="!locked.includes(item.key)">
+            <div class="boolean" *ngIf="typeOf(item.value) === 'boolean'">
+                <input id="order-{{ item.key }}" type="checkbox" [checked]="item.value"
+                    (click)="sendEditForm(createOrderEditForm(item.key, !item.value))">
+                <label for="order-{{ item.key }}">{{ dict[item.key] }}</label>
+            </div>
+            <div class="number" *ngIf="typeOf(item.value) === 'number'">
+                <label for="order-{{ item.key }}">{{ dict[item.key] }}</label>
+                <input id="order-{{ item.key }}" type="number" [value]="item.value" max="3" min="0"
+                    (change)="sendEditForm(createOrderEditForm(item.key, +getValue($event.srcElement)))">
+            </div>
+        </div>
+    </div>
+</div>
+<wd-loading *ngIf="client.country?.cities === null; else cities" />
+<ng-template #cities>
+    <div class="cities">
+        <wd-image-card class="city" *ngFor="let city of client.country!.cities" [title]="city.name"
+            [class.disabled]="city.ruined">
+            <img width="300" image [src]="city.previewUrl" [alt]="city.name">
+            <div caption>
+                <p>
+                    Уровень развития: {{ (city.private?.developmentLevel ?? 0) * 100 }}%
+                    <br />
+                    Уровень жизни: {{ city.lifeLevel * 100 }}%
+                    <br />
+                    Доход: {{ city.private?.perYearIncome ?? 0 }} &#8372;/год
+                </p>
+                <hr />
+                <div class="boolean" *ngIf="!city.private!.hasNukeShield">
+                    <input id="order-{{ city.name }}-shield" type="checkbox"
+                        [checked]="client.order!.buildCityShields.includes(city.name)"
+                        (click)="arrayChangeHandle('buildCityShields', city.name)">
+                    <label for="order-{{ city.name }}-shield">{{ dict.cityShield }}</label>
+                </div>
+                <div class="boolean">
+                    <input id="order-{{ city.name }}-develop" type="checkbox"
+                        [checked]="client.order!.cityDevelopments.includes(city.name)"
+                        (click)="arrayChangeHandle('cityDevelopments', city.name)">
+                    <label for="order-{{ city.name }}-develop">{{ dict.cityDevelop }}</label>
+                </div>
+            </div>
+        </wd-image-card>
+    </div>
+</ng-template>
+
+<h2 *ngIf="bombs > 0">{{ dict.nuclearAttackTargets }}</h2>
+
+<div class="nuclear-attack" *ngIf="bombs > 0">
+    <wd-country-card *ngFor="let country of client.anotherCountries()"
+        [country-flag-src]="country.flagUrl" [country-name]="country.name">
+        <div caption>
+            <div class="boolean" *ngFor="let city of country.cities" [class.disabled]="city.ruined">
+                <input type="checkbox" id="order-{{ city.name }}-nuke"
+                    [checked]="client.order!.nuclearAttackTargets.includes(city.name)"
+                    (click)="arrayChangeHandle('nuclearAttackTargets', city.name)">
+                <label for="order-{{ city.name }}-nuke">{{ city.name }}</label>
+            </div>
+        </div>
+    </wd-country-card>
+</div>

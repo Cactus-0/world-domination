@@ -1,0 +1,47 @@
+wd-order {
+    border: dashed red 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.boolean {
+    display: flex;
+    flex-direction: row;
+}
+
+.vals {
+    margin: 20px 0;
+
+    .order-price {
+        .error-message {
+            margin-left: 20px;
+        }
+    }
+}
+
+.cities {
+    display: flex;
+    justify-content: center;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    .city {
+        width: 300px;
+        margin-right: 15px;
+
+        div[caption] {
+            margin: 0 10px;
+        }
+    }
+}
+
+.nuclear-attack {
+    display: flex;
+    justify-content: center;
+
+    div {
+        width: 250px;
+    }
+}
