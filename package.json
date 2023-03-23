@@ -6,6 +6,7 @@
   	"scripts": {
   	  	"prebuild": "rm .tsbuildinfo & rm -rf dist & rm -rf bin",
   	  	"build": "npm run prebuild & npm run build:server && npm run build:client && pkg .",
+		"release": "node scripts/release",
   	  	"build:client": "cd frontend && npm run build && cd ..",
   	  	"build:server": "ttsc --project tsconfig.build.json",
   	  	"start:dev": "NODE_ENV=development node -r source-map-support/register .",
