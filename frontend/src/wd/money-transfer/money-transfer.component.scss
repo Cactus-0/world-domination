@@ -1,0 +1,31 @@
+@import '../../constants.scss';
+
+.popup {
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    top: 50vh;
+    box-shadow: 0 0 10px rgba(256, 256, 256, 0.13);
+    padding: 20px;
+    position: fixed;
+    background-color: $primary-color;
+    border-radius: 10px;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    form {
+        fieldset, .sum, input {
+            margin-bottom: 10px;
+        }
+
+        .sum {
+            margin-right: 5px;
+        }
+    }
+
+    .secondary {
+        margin-right: 15px;
+    }
+}

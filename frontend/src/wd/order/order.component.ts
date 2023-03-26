@@ -9,6 +9,8 @@ import { GameService } from '../game-services/game.service';
 	styleUrls: ['./order.component.scss']
 })
 export class OrderComponent {
+	public showMoneyTransferForm: boolean = false;
+
 	public dict = {
 		buyNuclearTechnology: 'Открыть ядерную технологию',
 		buildNuke: 'Создать ядерное оружие',

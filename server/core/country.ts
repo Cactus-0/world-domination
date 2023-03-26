@@ -42,6 +42,14 @@ export class Country implements ICountry {
         this.game.syncPublicState();
     }
 
+    public giveMoneyTo(country: Country, amount: number) {
+        if (this.private.budget < amount)
+            throw new Error('Not enough money');
+
+        this.private.budget -= amount;
+        country.private.budget += amount;
+    }
+
     public attack(target: City): ICityAttackInfo {
         if (this.private.nuclearBombs < 1)
             throw new Error(`${this.name} has not nuclear bombs for attack on ${target.name}`);

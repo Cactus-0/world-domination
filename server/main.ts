@@ -8,7 +8,7 @@ import { Game } from '@/core/game-loop/game';
 import { log } from '@/logger';
 
 const noop = <T>(t: T) => t;
-
+ 
 async function main() {
     try {
         if (!fs.existsSync(Constants.ConfigFilePath))

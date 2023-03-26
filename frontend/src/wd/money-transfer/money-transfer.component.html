@@ -1,0 +1,23 @@
+<div class="popup">
+    <h2>Передача денег</h2>
+
+    <form [formGroup]="form" (submit)="submit()">
+        <fieldset>
+            <legend>Выберите страну</legend>
+
+            <div *ngFor="let country of countries; let i = index">
+                <input type="radio" formControlName="country"
+                    id="money-transfer-{{ i }}" [value]="country" />
+                <label for="money-transfer-{{ i }}">{{ country }}</label>
+            </div>
+        </fieldset>
+
+        <label class="sum" [for]="mtSum.id">Сумма денег:</label>
+        <input formControlName="sum" type="number" id="money-transfer-sum" #mtSum />
+
+        <br />
+
+        <button [class.disabled]="!form.valid" type="submit">Отправить</button>
+        <button class="secondary" (click)="cancel.emit()">Отменить</button>
+    </form>
+</div>

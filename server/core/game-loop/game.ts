@@ -42,6 +42,15 @@ export class Game extends EventEmitter<GameLoopEvents>  {
         throw new Error(`There is no city with name "${name}"`);
     }
 
+    public getCountryByName(name: string): Country {
+        for (const country of this.countries) {
+            if (country.name === name)
+                return country;
+        }
+
+        throw new Error(`There is no city with name "${name}"`);
+    }
+
     public registerPlayer(username: string): Player {
         if ([...this.players.values()].some(player => player.username === username))
             throw new Error(`Имя ${username} уже занято.`);
@@ -67,8 +76,6 @@ export class Game extends EventEmitter<GameLoopEvents>  {
     }
 
     public destroyPlayer(player: Player<boolean>) {
-        log(`Destroying: ${player.username}`);
-
         if (!this.players.has(player)) return;
 
         this.players.delete(player);
@@ -78,7 +85,6 @@ export class Game extends EventEmitter<GameLoopEvents>  {
     public destroyAdmin(): void {
         if (!this.admin) return;
 
-        log(`Destroying admin: ${this.admin.username}`);
         this.admin = null;
         this.syncPublicState();
     }
@@ -131,7 +137,7 @@ export class Game extends EventEmitter<GameLoopEvents>  {
 
     private async activeGameLoop(): pvoid {
         while (true) {
-            log(`new game iteration, year: ${this.year}`);
+            log(`New game iteration, year: /cyan/${this.year}//, phase: /cyan/${this.phase}//`);
 
             if (!this.admin)
                 throw new Error(`There is no admin in active game phase`);
@@ -169,6 +175,10 @@ export class Game extends EventEmitter<GameLoopEvents>  {
 
             this.syncPublicState();
         }
+    }
+
+    public syncPrivateState(country: Country) {
+        this.emit('private-state-sync', country);
     }
 
     public syncPublicState(): void {

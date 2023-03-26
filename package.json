@@ -1,6 +1,6 @@
 {
   	"name": "world-domination",
-  	"version": "1.0.0",
+  	"version": "1.1.0",
   	"main": "dist/server/main.js",
   	"bin": "dist/server/main.js",
   	"scripts": {

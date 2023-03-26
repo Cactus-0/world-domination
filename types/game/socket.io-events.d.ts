@@ -5,6 +5,7 @@ declare interface IBaseEvents {
 declare interface IClientToServerEvents extends IBaseEvents {
     'change-country': (name: string) => void;
     'order-edit': (form: IOrderEdit) => void;
+    'send-money': (to: string, amount: number) => void;
 }
 
 declare interface IServerToClientEvents extends IBaseEvents {

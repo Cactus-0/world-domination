@@ -1,5 +1,6 @@
 import { Admin } from '@/core/admin';
 import { Game } from '@/core/game-loop';
+import { log } from '@/logger';
 import { Socket } from 'socket.io';
 
 export function adminEvents(
@@ -18,5 +19,7 @@ export function adminEvents(
         game.destroyAdmin();
         
         game.off('public-state-sync', publicStateSync);
+
+        log(`Admin disconnected: /red/ ${admin.username} //`);
     });
 }

@@ -1,3 +1,11 @@
+<wd-money-transfer *ngIf="showMoneyTransferForm"
+    (cancel)="showMoneyTransferForm = false"
+    (after-submit)="showMoneyTransferForm = false" />
+
+<button class="show-money-transfer" (click)="showMoneyTransferForm = true">
+    Передача денег
+</button>
+
 <div class="base-box vals">
     <p class="order-price">
         Стоимость приказа: {{ price }} &#8372;

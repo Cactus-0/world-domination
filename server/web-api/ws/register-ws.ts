@@ -23,11 +23,11 @@ export function registerWS(game: Game, socket: Socket<IClientToServerEvents, ISe
         const admin = game.setAdmin(username);
         adminEvents(admin, socket, game);
         socket.emit('accept-login', true);
-        log(`Admin connection: ${username}`);
+        log(`Admin connection: /green/ ${username} //`);
     } else {
         const player = game.registerPlayer(username);
         playerEvents(player, socket, game);
         socket.emit('accept-login', false);
-        log(`Connected: ${username} /grey/ (${ip}) //`);
+        log(`Connected: /green/ ${username} // /grey/ (${ip}) //`);
     }
 }

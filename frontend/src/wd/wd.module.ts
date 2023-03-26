@@ -20,6 +20,7 @@ import { GlobalConversationComponent } from './pages/global-conversation/global-
 import { EndComponent } from './pages/end/end.component';
 import { CountryComponent } from './country/country.component';
 import { GlobalStateComponent } from './global-state/global-state.component';
+import { MoneyTransferComponent } from './money-transfer/money-transfer.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +35,8 @@ import { GlobalStateComponent } from './global-state/global-state.component';
 		GlobalConversationComponent,
 		EndComponent,
 		CountryComponent,
-		GlobalStateComponent
+		GlobalStateComponent,
+		MoneyTransferComponent
 	],
 	imports: [
 		BrowserModule,
