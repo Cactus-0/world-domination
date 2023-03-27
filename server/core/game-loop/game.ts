@@ -151,7 +151,16 @@ export class Game extends EventEmitter<GameLoopEvents>  {
                 this._phase = 'global-conversation';
 
                 this.countries.forEach(country => {
+                    country.private.sanctionsFrom = [];
+                });
+
+                this.countries.forEach(country => {
                     country.private.order.process();
+                    
+                    country.private.order.sanctions.forEach(name => {
+                        this.getCountryByName(name).private.sanctionsFrom.push(country.name);
+                    });
+
                     country.increaseBudget();
 
                     log(`${country.name}: ${country.private.order.toLogString()}`);

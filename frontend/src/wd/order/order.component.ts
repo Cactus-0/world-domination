@@ -19,14 +19,13 @@ export class OrderComponent {
 		cityDevelopments: 'Развить города',
 		cityShield: 'Построить щит',
 		cityDevelop: 'Развить город',
-		nuclearAttackTargets: 'Цели ядерных атак'
+		nuclearAttackTargets: 'Цели ядерных атак',
+		sanctions: 'Наложить санкции'
 	} satisfies Record<keyof IOrder, string> & any;
-
-	public log = console.log;
 
 	public constructor(
 		public readonly gameService: GameService<'connected'>,
-		public readonly client: ClientControlsService
+		public readonly client: ClientControlsService<'connected'>
 	) { }
 
 	public get price(): number {
@@ -85,17 +84,17 @@ export class OrderComponent {
 	}
 
 	public arrayChangeHandle(
-		field: 'buildCityShields' | 'cityDevelopments' | 'nuclearAttackTargets',
-		city: string
+		field: 'buildCityShields' | 'cityDevelopments' | 'nuclearAttackTargets' | 'sanctions',
+		element: string
 	): void {
 		let index: string | number;
 
-		const cityIndex = this.client.order![field].indexOf(city);
+		const arrayIndex = this.client.order![field].indexOf(element);
 
-		if (cityIndex === -1)
-			index = city;
+		if (arrayIndex === -1)
+			index = element;
 		else
-			index = cityIndex;
+			index = arrayIndex;
 
 		this.sendEditForm(this.createOrderEditForm(field, index));
 	}

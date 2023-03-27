@@ -16,6 +16,7 @@ export class Order implements IOrder {
     public buildCityShields!: string[];
     public improveEcology!: boolean;
     public nuclearAttackTargets!: string[];
+    public sanctions!: string[];
 
     public constructor(private readonly ctx: OrderProcessingContext) {
         this.reset();
@@ -43,6 +44,7 @@ export class Order implements IOrder {
         this.nuclearAttackTargets = [];
         this.buildNuke = 0;
         this.buyNuclearTechnology = false;
+        this.sanctions ??= [];
     }
     
     public process(): void {
@@ -51,11 +53,10 @@ export class Order implements IOrder {
         else
             this.buildNuke = 0;
 
-        if (this.buildNuke > 2)
+        if (this.buildNuke > 3)
             this.buildNuke = 3;
         
         const price = this.price(this.ctx.defaults);
-        const result: ICityAttackInfo[] = [];
 
         if (price > this.ctx.country.private.budget) return;
 
@@ -64,8 +65,16 @@ export class Order implements IOrder {
         if (this.buyNuclearTechnology)
             this.ctx.country.private.hasNuclearTechnology = true;
 
-        if (this.buildNuke)
+        if (this.buildNuke) {
             this.ctx.country.private.nuclearBombs += this.buildNuke;
+
+            const ecologyAffect = this.ctx.defaults.nuclearBombCreationEcologyAffect * this.buildNuke;
+
+            if (ecologyAffect >= this.ctx.country.private.ecology)
+                this.ctx.country.private.ecology = 0;
+            else
+                this.ctx.country.private.ecology -= ecologyAffect;
+        }
 
         if (this.improveEcology)
             this.ctx.country.private.ecology += this.ctx.defaults.perLevelEcologyImprovement;

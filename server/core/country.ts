@@ -25,6 +25,7 @@ export class Country implements ICountry {
         this.cities = countryData.cities.map(raw => new City(raw, game, this));
 
         this.private = {
+            sanctionsFrom: [],
             budget: game.defaults.startCountryBudget,
             ecology: game.defaults.startCountryEcologyLevel,
             hasNuclearTechnology: false,

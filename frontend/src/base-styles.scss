@@ -69,3 +69,10 @@ button[class=secondary] {
 fieldset {
     background-color: transparent;
 }
+
+hr {
+    height: 8px;
+    background: $disabled-elements-color;
+    border: 0;
+    height: 1px;
+}

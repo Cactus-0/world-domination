@@ -5,6 +5,7 @@ declare interface IOrder {
     buildCityShields: string[];
     nuclearAttackTargets: string[];
     improveEcology: boolean;
+    sanctions: string[];
 }
 
 interface IOrderEditBase<T extends 'primitive' | 'array'> {

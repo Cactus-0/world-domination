@@ -10,6 +10,7 @@ export const defaultConfig: IConfig = {
         maxPerYearIncome: 500,
         nuclearTechnologyPrice: 500,
         nuclearBombPrice: 150,
+        sanctionsAffect: 0.75,
         nuclearBombCreationEcologyAffect: 0.1,
         buildCityShieldPrice: 300,
         cityDevelopmentPrice: 350,

@@ -1,4 +1,4 @@
-const defaultCityImage = '/assets/cities/default.webp';
+// const defaultCityImage = '/assets/cities/default.webp';
 
 export const countries: ICountryData[] = [
     {
@@ -7,19 +7,19 @@ export const countries: ICountryData[] = [
         cities: [
             {
                 name: 'Иерусалим',
-                previewUrl: '/assets/cities/israel/jerusalem.jpg'
+                previewUrl: '/assets/cities/israel/jerusalem.svg'
             },
             {
                 name: 'Хайфа',
-                previewUrl: '/assets/cities/israel/haifa.jpg'
+                previewUrl: '/assets/cities/israel/haifa.svg'
             },
             {
                 name: 'Тель-Авив',
-                previewUrl: '/assets/cities/israel/tel-aviv.jpg'
+                previewUrl: '/assets/cities/israel/tel-aviv.svg'
             },
             {
                 name: 'Эйлад',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/israel/eilad.svg'
             }
         ],
     },
@@ -29,19 +29,19 @@ export const countries: ICountryData[] = [
         cities: [
             {
                 name: 'Тирана',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/albania/tirana.svg'
             },
             {
                 name: 'Приштина',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/albania/pristina.svg'
             },
             {
                 name: 'Дуррес',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/albania/durres.svg'
             },
             {
                 name: 'Фиери',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/albania/fieri.svg'
             }
         ],
     },
@@ -51,19 +51,19 @@ export const countries: ICountryData[] = [
         cities: [
             {
                 name: 'Киев',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/ukraine/kyiv.svg'
             },
             {
                 name: 'Днепр',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/ukraine/dnipro.svg'
             },
             {
                 name: 'Львов',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/ukraine/lviv.svg'
             },
             {
                 name: 'Севастополь',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/ukraine/sevastopol.svg'
             }
         ],
     },
@@ -73,19 +73,19 @@ export const countries: ICountryData[] = [
         cities: [
             {
                 name: 'Пхеньян',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/north-korea/phenian.svg'
             },
             {
                 name: 'Синпхо',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/north-korea/sinpho.webp'
             },
             {
                 name: 'Чхонджин',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/north-korea/chondzhin.webp'
             },
             {
                 name: 'Самджиён',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/north-korea/samdzhien.webp'
             }
         ],
     },
@@ -95,19 +95,19 @@ export const countries: ICountryData[] = [
         cities: [
             {
                 name: 'Берлин',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/germany/berlin.webp'
             },
             {
                 name: 'Кёнигсберг',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/germany/konigsberg.webp'
             },
             {
                 name: 'Мюнхен',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/germany/muchen.webp'
             },
             {
                 name: 'Гамбург',
-                previewUrl: defaultCityImage
+                previewUrl: '/assets/cities/germany/hamburg.webp'
             }
         ]
     }

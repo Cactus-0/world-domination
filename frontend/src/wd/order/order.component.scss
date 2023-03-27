@@ -41,9 +41,13 @@ wd-order {
     }
 }
 
-.nuclear-attack {
+.another-countries {
     display: flex;
     justify-content: center;
+
+    wd-country-card {
+        margin: 15px;
+    }
 
     div {
         width: 250px;

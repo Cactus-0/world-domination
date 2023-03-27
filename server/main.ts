@@ -5,7 +5,7 @@ import { Constants } from '@/constants';
 import { readConfig, writeDefaultConfig } from '@/config';
 import { createGameServer } from '@/web-api';
 import { Game } from '@/core/game-loop/game';
-import { log } from '@/logger';
+import { format, log } from '@/logger';
 
 const noop = <T>(t: T) => t;
  
@@ -28,10 +28,10 @@ async function main() {
 
     await createGameServer(config.port, game);
 
-    log(`Запущен сервер на порту ${config.port}.`);
-    log('config.json - файл конфигурации.');
+    log(`Запущен сервер на порту /cyan/${config.port}//.`);
+    log('/cyan/config.json// - файл конфигурации.');
     log('После его изменения перезапустите программу, чтобы применить изменения.');
-    log('Ссылка на игру: http:/\\\\/localhost:3000/');
+    log(`Ссылка на игру: /cyan/${format.s`http://localhost:${config.port}/`}//`);
 }
 
 main();

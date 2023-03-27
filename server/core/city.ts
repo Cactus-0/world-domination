@@ -32,7 +32,12 @@ export class City implements TCity {
             get perYearIncome(): number {
                 if (city.ruined) return 0;
 
-                return ~~(city.lifeLevel * game.defaults.maxPerYearIncome);
+                const sanctions = country.private.sanctionsFrom.length;
+
+                return Math.floor(
+                    city.lifeLevel * game.defaults.maxPerYearIncome *
+                    (1 - sanctions * game.defaults.sanctionsAffect / (game.countries.size - 1))
+                );
             }
         }
     }

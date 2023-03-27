@@ -7,7 +7,10 @@
         Ядерных бомб: {{ info.private.nuclearBombs }} <br />
         Бюджет: {{ info.private!.budget }} &#8372; <br />
         Уровень экологии: {{ info.private!.ecology * 100 | number }}% <br />
-        Ежегодный доход: {{ perYearIncome }} &#8372;/год
+        Ежегодный доход: {{ perYearIncome }} &#8372;/год <br />
+        <span *ngIf="info.private.sanctionsFrom.length > 0">
+            На вас наложили санкции: {{ info.private.sanctionsFrom.join(', ') }}
+        </span>
     </p>
 </div>
 <div class="cities" *ngIf="withCities">

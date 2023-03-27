@@ -1,5 +1,6 @@
 declare interface IDefaults {
     rounds: number;
+    sanctionsAffect: number;
 
     startCityDevelopmentLevel: number;
     startCountryBudget: number;

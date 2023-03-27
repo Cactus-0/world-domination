@@ -4,6 +4,7 @@ declare interface ICountryPrivateState {
     budget: number;
     ecology: number;
     order: IOrder;
+    sanctionsFrom: string[];
 }
 
 declare interface ICountryData {
