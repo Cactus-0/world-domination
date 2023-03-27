@@ -107,15 +107,22 @@ export class Order implements IOrder {
         return result;
     }
 
-    public toLogString(): string {
-        return Object.entries(this)
-            .map(([key, value]) => {
-                if (key === 'ctx')
-                    return undefined;
+    public toLogStrings(): string[] {
+        const result: string[] = [];
 
-                return `/grey/${key}:// /green/${Array.isArray(value) ? arrayToString(value) : value}//`;
-            })
-            .filter(Boolean)
-            .join(', ');
+        if (this.buyNuclearTechnology)
+            result.push('изучает /green/ядерную технологию//');
+        if (this.buildNuke > 0)
+            result.push(`создаёт /green/${this.buildNuke}// ядерных бомб`);
+        if (this.improveEcology)
+            result.push(`вкладывается в /green/экологию//`);
+        if (this.buildCityShields.length > 0)
+            result.push(`защищает города: ${this.buildCityShields.map(city => `/green/${city}//`).join(', ')}`);
+        if (this.cityDevelopments.length > 0)
+            result.push(`улучшает города: ${this.cityDevelopments.map(city => `/green/${city}//`).join(', ')}`);
+        if (this.nuclearAttackTargets.length > 0)
+            result.push(`атакует города: ${this.nuclearAttackTargets.map(city => `/green/${city}//`).join(', ')}`);
+
+        return result;
     }
 }

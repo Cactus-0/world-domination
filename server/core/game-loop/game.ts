@@ -163,7 +163,9 @@ export class Game extends EventEmitter<GameLoopEvents>  {
 
                     country.increaseBudget();
 
-                    log(`${country.name}: ${country.private.order.toLogString()}`);
+                    country.private.order.toLogStrings()
+                        .map(log => `/green/${country.name}// ${log}`)
+                        .forEach(log);
                 });
 
                 this.countries.forEach(country => {
