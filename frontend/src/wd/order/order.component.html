@@ -70,14 +70,14 @@
                     (click)="arrayChangeHandle('sanctions', country.name)"/>
                 <label for="sanctions-{{ i }}">{{ dict.sanctions }}</label>
             </div>
-            <ng-template *ngIf="bombs > 0">
+            <div *ngIf="bombs > 0">
                 <div class="boolean" *ngFor="let city of country.cities" [class.disabled]="city.ruined">
                     <input type="checkbox" id="order-{{ city.name }}-nuke"
                         [checked]="client.order!.nuclearAttackTargets.includes(city.name)"
                         (click)="arrayChangeHandle('nuclearAttackTargets', city.name)">
                     <label for="order-{{ city.name }}-nuke">{{ city.name }}</label>
                 </div>
-            </ng-template>
+            </div>
         </div>
     </wd-country-card>
 </div>

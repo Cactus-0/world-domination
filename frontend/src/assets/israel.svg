@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="800"><path d="M 0,0 H 1100 V 800 H 0 Z" fill="#fff"/><path d="M 0,75 H 1100 V 200 H 0 Z" fill="#0038b8"/><path d="M 0,600 H 1100 V 725 H 0 Z" fill="#0038b8"/><path d="M 423.81566,472.85253 H 676.18435 L 550.00001,254.29492 Z m 126.18435,72.85255 126.1843,-218.55765 H 423.81566 Z" fill="none" stroke="#0038b8" stroke-width="27.5"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 200" style="enable-background:new 0 0 500 200;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#264697;}
+	.st2{fill:none;stroke:#264697;stroke-width:9;}
+</style>
+<path class="st0" d="M0,0h500v200H0V0z"/>
+<path class="st1" d="M0,13.01h500v15.62H0V13.01z"/>
+<path class="st1" d="M0,171.37h500v15.62H0V171.37z"/>
+<path class="st2" d="M200.71,128.46h98.58L250,43.08L200.71,128.46z M250,156.92l49.29-85.37h-98.58L250,156.92z"/>
+</svg>

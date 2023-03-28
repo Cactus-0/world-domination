@@ -80,6 +80,7 @@ export class OrderComponent {
 	}
 
 	public get bombs(): number {
+		console.log(this.client.country!.private.nuclearBombs);
 		return this.client.country!.private.nuclearBombs;
 	}
 
