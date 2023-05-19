@@ -39,7 +39,15 @@ export class ClientControlsService<
     }
 
     public anotherCountries(): ICountry[] {
-        return this.gameService.gameState?.countries
-            .filter(({ name }) => name !== this.country?.name)!;
+        if (!this.gameService.gameState?.countries) {
+            return [];
+        }
+
+        const result = { ...this.gameService.gameState?.countries };
+
+        if (this.country?.name)
+            delete result[this.country?.name];
+
+        return Object.values(result);
     }
 }

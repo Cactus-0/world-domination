@@ -16,11 +16,11 @@
     <wd-loading *ngIf="!gameState; else content" />
     <ng-template #content>
         <ul>
-            <li *ngFor="let country of gameState!.countries">
-                <wd-country-card [country-flag-src]="country.flagUrl" [country-name]="country.name"
+            <li *ngFor="let country of gameState!.countries | keyvalue">
+                <wd-country-card [country-flag-src]="country.value.flagUrl" [country-name]="country.value.name"
                     class="country-card">
-                    <button caption class="join" *ngIf="!gameService.isAdmin && country.name !== username"
-                        (click)="clientControls.changeCountry(country.name)">
+                    <button caption class="join" *ngIf="!gameService.isAdmin && country.value.name !== username"
+                        (click)="clientControls.changeCountry(country.value.name)">
                         Присоединится
                     </button>
                 </wd-country-card>

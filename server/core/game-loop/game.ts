@@ -5,10 +5,12 @@ import { Country } from '@/core/country';
 import { Player } from '@/core/player';
 import { GameLoopEvents } from '.';
 import { log } from '@/logger';
+import { arrayToDict } from '@utils/array-to-dict';
+import { mapDict } from '@utils/map-dict';
 
 export class Game extends EventEmitter<GameLoopEvents>  {
-    public readonly countries: Set<Country>;
-    public readonly players: Set<Player> = new Set;
+    public readonly countries: Dict<Country>;
+    public readonly players: Dict<Player> = {};
     public year: number = 0;
 
     private _phase: GamePhase = 'pre-phase';
@@ -19,7 +21,7 @@ export class Game extends EventEmitter<GameLoopEvents>  {
         public readonly defaults: IDefaults
     ) {
         super();
-        this.countries = new Set(Country.list.map(raw => new Country(raw, this)));
+        this.countries = arrayToDict(Country.list.map(raw => new Country(raw, this)));
     }
 
     public get phase(): GamePhase {
@@ -31,33 +33,28 @@ export class Game extends EventEmitter<GameLoopEvents>  {
     }
 
     public getCityByName(name: string): City {
-        for (const country of this.countries) {
-            for (const city of country.cities) {
-                if (city.name === name) {
-                    return city;
-                }
-            }
+        for (const country of Object.values(this.countries)) {
+            if (country.cities[name])
+                return country.cities[name];
         }
 
         throw new Error(`There is no city with name "${name}"`);
     }
 
     public getCountryByName(name: string): Country {
-        for (const country of this.countries) {
-            if (country.name === name)
-                return country;
-        }
+        if (!this.countries[name])
+            throw new Error(`There is no city with name "${name}"`);
 
-        throw new Error(`There is no city with name "${name}"`);
+        return this.countries[name];
     }
 
     public registerPlayer(username: string): Player {
-        if ([...this.players.values()].some(player => player.username === username))
+        if (username in this.players)
             throw new Error(`Имя ${username} уже занято.`);
 
         const player = new Player(username, this);
         
-        this.players.add(player);
+        this.players[username] = player;
 
         return player;
     }
@@ -66,7 +63,7 @@ export class Game extends EventEmitter<GameLoopEvents>  {
         if (this.admin !== null)
             throw new Error(`В этой игре уже есть координатор.`);
 
-        if ([...this.players.values()].some(player => player.username === username))
+        if (username in this.players)
             throw new Error(`Имя ${username} уже занято.`);
         
         const admin = new Admin(username);
@@ -76,9 +73,7 @@ export class Game extends EventEmitter<GameLoopEvents>  {
     }
 
     public destroyPlayer(player: Player<boolean>) {
-        if (!this.players.has(player)) return;
-
-        this.players.delete(player);
+        delete this.players[player.username];
         player.country?.players.delete(player);
     }
 
@@ -90,9 +85,9 @@ export class Game extends EventEmitter<GameLoopEvents>  {
     }
 
     public deleteUselessCountries(): void {
-        this.countries.forEach(country => {
+        Object.values(this.countries).forEach(country => {
             if (country.players.size === 0)
-                this.countries.delete(country);
+                delete this.countries[country.name];
         });
     }
 
@@ -101,7 +96,7 @@ export class Game extends EventEmitter<GameLoopEvents>  {
         this.year++;
         this._phase = 'team-conversation';
         
-        this.countries.forEach(country => {
+        Object.values(this.countries).forEach(country => {
             this.emit('private-state-sync', country);
             this.emit('order-sync', country, country.private.order);
         });
@@ -117,21 +112,21 @@ export class Game extends EventEmitter<GameLoopEvents>  {
             year: this.year,
             defaults: this.defaults,
             phase: this.phase,
-            countries: [...this.countries.values()].map(country => country.toJSON()),
-            players: [...this.players.values()].map(player => player.toJSON())
+            countries: mapDict(this.countries, country => country.toJSON()),
+            players: mapDict(this.players, player => player.toJSON())
         }
     }
 
     public endGame(): void {
         this._phase = 'end';
-        this.winner = [...this.countries.values()]
+        this.winner = Object.values(this.countries)
             .sort((a, b) => b.averageLifeLevel - a.averageLifeLevel)[0].name;
         this.emit('public-state-sync', this.toJSON());
         this.destroy();
     }
 
     public destroy(): void {
-        this.players.forEach(player => this.destroyPlayer(player));
+        Object.values(this.players).forEach(player => this.destroyPlayer(player));
         this.destroyAdmin();
     }
 
@@ -150,11 +145,11 @@ export class Game extends EventEmitter<GameLoopEvents>  {
             } else {
                 this._phase = 'global-conversation';
 
-                this.countries.forEach(country => {
+                Object.values(this.countries).forEach(country => {
                     country.private.sanctionsFrom = [];
                 });
 
-                this.countries.forEach(country => {
+                Object.values(this.countries).forEach(country => {
                     country.private.order.process();
                     
                     country.private.order.sanctions.forEach(name => {
@@ -168,12 +163,12 @@ export class Game extends EventEmitter<GameLoopEvents>  {
                         .forEach(log);
                 });
 
-                this.countries.forEach(country => {
+                Object.values(this.countries).forEach(country => {
                     country.private.order.processAttacks();
                     country.private.order.reset();
                 });
 
-                this.countries.forEach(country => {
+                Object.values(this.countries).forEach(country => {
                     this.emit('order-sync', country, country.private.order);
                     this.emit('private-state-sync', country);
                 });

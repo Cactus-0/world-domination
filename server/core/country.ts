@@ -1,4 +1,6 @@
 import { average } from '@utils/average';
+import { arrayToDict } from '@utils/array-to-dict';
+import { mapDict } from '@utils/map-dict';
 import { countries } from './countries';
 import { Game } from './game-loop';
 import { Order } from './order';
@@ -8,7 +10,7 @@ import { City } from './city';
 export class Country implements ICountry {
     public readonly name: string;
     public readonly flagUrl: string;
-    public readonly cities: City[];
+    public readonly cities: Dict<City>;
 
     public private: ICountryPrivateState & { order: Order };
 
@@ -22,7 +24,7 @@ export class Country implements ICountry {
     ) {
         this.name = countryData.name;
         this.flagUrl = countryData.flagUrl;
-        this.cities = countryData.cities.map(raw => new City(raw, game, this));
+        this.cities = arrayToDict(countryData.cities.map(raw => new City(raw, game, this)));
 
         this.private = {
             sanctionsFrom: [],
@@ -35,7 +37,7 @@ export class Country implements ICountry {
     }
 
     public get averageLifeLevel(): number {
-        return average(...this.cities.map(city => city.lifeLevel));
+        return average(...Object.values(this.cities).map(city => city.lifeLevel));
     }
 
     public addPlayer(player: Player) {
@@ -61,7 +63,7 @@ export class Country implements ICountry {
     }
 
     public increaseBudget(): void {
-        this.cities.forEach(city => this.private.budget += city.private.perYearIncome);
+        Object.values(this.cities).forEach(city => this.private.budget += city.private.perYearIncome);
     }
 
     public editOrder(form: IOrderEdit): void {
@@ -73,7 +75,7 @@ export class Country implements ICountry {
         return {
             name: this.name,
             flagUrl: this.flagUrl,
-            cities: this.cities.map(city => cityPrivateInfo ? city.toPrivateJSON() : city.toJSON()),
+            cities: mapDict(this.cities, city => cityPrivateInfo ? city.toPrivateJSON() : city.toJSON()),
             averageLifeLevel: this.averageLifeLevel,
         }
     }

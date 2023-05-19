@@ -31,29 +31,29 @@
 <wd-loading *ngIf="client.country?.cities === null; else cities" />
 <ng-template #cities>
     <div class="cities">
-        <wd-image-card class="city" *ngFor="let city of client.country!.cities" [title]="city.name"
-            [class.disabled]="city.ruined">
-            <img width="300" image [src]="city.previewUrl" [alt]="city.name">
+        <wd-image-card class="city" *ngFor="let city of client.country!.cities | keyvalue" [title]="city.value.name"
+            [class.disabled]="city.value.ruined">
+            <img width="300" image [src]="city.value.previewUrl" [alt]="city.value.name">
             <div caption>
                 <p>
-                    Уровень развития: {{ (city.private?.developmentLevel ?? 0) * 100 }}%
+                    Уровень развития: {{ (city.value.private?.developmentLevel ?? 0) * 100 }}%
                     <br />
-                    Уровень жизни: {{ city.lifeLevel * 100 }}%
+                    Уровень жизни: {{ city.value.lifeLevel * 100 }}%
                     <br />
-                    Доход: {{ city.private?.perYearIncome ?? 0 }} &#8372;/год
+                    Доход: {{ city.value.private?.perYearIncome ?? 0 }} &#8372;/год
                 </p>
                 <hr />
-                <div class="boolean" *ngIf="!city.private!.hasNukeShield">
-                    <input id="order-{{ city.name }}-shield" type="checkbox"
-                        [checked]="client.order!.buildCityShields.includes(city.name)"
-                        (click)="arrayChangeHandle('buildCityShields', city.name)">
-                    <label for="order-{{ city.name }}-shield">{{ dict.cityShield }}</label>
+                <div class="boolean" *ngIf="!city.value.private!.hasNukeShield">
+                    <input id="order-{{ city.value.name }}-shield" type="checkbox"
+                        [checked]="client.order!.buildCityShields.includes(city.value.name)"
+                        (click)="arrayChangeHandle('buildCityShields', city.value.name)">
+                    <label for="order-{{ city.value.name }}-shield">{{ dict.cityShield }}</label>
                 </div>
                 <div class="boolean">
-                    <input id="order-{{ city.name }}-develop" type="checkbox"
-                        [checked]="client.order!.cityDevelopments.includes(city.name)"
-                        (click)="arrayChangeHandle('cityDevelopments', city.name)">
-                    <label for="order-{{ city.name }}-develop">{{ dict.cityDevelop }}</label>
+                    <input id="order-{{ city.value.name }}-develop" type="checkbox"
+                        [checked]="client.order!.cityDevelopments.includes(city.value.name)"
+                        (click)="arrayChangeHandle('cityDevelopments', city.value.name)">
+                    <label for="order-{{ city.value.name }}-develop">{{ dict.cityDevelop }}</label>
                 </div>
             </div>
         </wd-image-card>
@@ -71,11 +71,11 @@
                 <label for="sanctions-{{ i }}">{{ dict.sanctions }}</label>
             </div>
             <div *ngIf="bombs > 0">
-                <div class="boolean" *ngFor="let city of country.cities" [class.disabled]="city.ruined">
-                    <input type="checkbox" id="order-{{ city.name }}-nuke"
-                        [checked]="client.order!.nuclearAttackTargets.includes(city.name)"
-                        (click)="arrayChangeHandle('nuclearAttackTargets', city.name)">
-                    <label for="order-{{ city.name }}-nuke">{{ city.name }}</label>
+                <div class="boolean" *ngFor="let city of country.cities | keyvalue" [class.disabled]="city.value">
+                    <input type="checkbox" id="order-{{ city.value }}-nuke"
+                        [checked]="client.order!.nuclearAttackTargets.includes(city.value.name)"
+                        (click)="arrayChangeHandle('nuclearAttackTargets', city.value.name)">
+                    <label for="order-{{ city.value.name }}-nuke">{{ city.value.name }}</label>
                 </div>
             </div>
         </div>

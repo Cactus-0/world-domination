@@ -10,6 +10,6 @@
 <ng-template #adminControl>
     <button class="skip" (click)="forcePhaseSkip()">Завершить фазу</button>
 
-    <wd-country class="country" *ngFor="let country of gameService.gameState?.countries"
-        [country-info]="country" [with-cities]="true"/>
+    <wd-country class="country" *ngFor="let country of gameService.gameState?.countries | keyvalue"
+        [country-info]="country.value" [with-cities]="true"/>
 </ng-template>

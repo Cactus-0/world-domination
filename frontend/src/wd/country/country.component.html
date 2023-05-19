@@ -14,19 +14,19 @@
     </p>
 </div>
 <div class="cities" *ngIf="withCities">
-    <div class="base-box city" *ngFor="let city of info.cities">
-        <h3 [class.disabled]="city.ruined">{{ city.name }}</h3>
-        <p *ngIf="city.ruined; else notRuined" class="disabled">
+    <div class="base-box city" *ngFor="let city of info.cities | keyvalue">
+        <h3 [class.disabled]="city.value.ruined">{{ city.value.name }}</h3>
+        <p *ngIf="city.value.ruined; else notRuined" class="disabled">
             Город разрушен
         </p>
         <ng-template #notRuined>
             <p>Город цел</p>
         </ng-template>
-        <p>Уровень жизни: {{ city.lifeLevel * 100 }}%</p>
-        <p *ngIf="city.private">
-            Уровень развития: {{ city.private.developmentLevel * 100 }}% <br />
-            Ежегодный доход: {{ city.private.perYearIncome }} &#8372;/год <br />
-            Город {{ city.private.hasNukeShield ? '' : 'не' }} защищён <br />
+        <p>Уровень жизни: {{ city.value.lifeLevel * 100 }}%</p>
+        <p *ngIf="city.value.private">
+            Уровень развития: {{ city.value.private.developmentLevel * 100 }}% <br />
+            Ежегодный доход: {{ city.value.private.perYearIncome }} &#8372;/год <br />
+            Город {{ city.value.private.hasNukeShield ? '' : 'не' }} защищён <br />
         </p>
     </div>
 </div>

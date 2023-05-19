@@ -78,6 +78,11 @@ export class GameService<Connection extends GameServiceConnectionState = 'not-co
     }
 
     public playersFor(countryName: string): IPlayer[] | null {
-        return this.gameState?.players.filter(({ country }) => country === countryName) ?? null;
+        if (!this.gameState?.players) {
+            return null;
+        }
+
+        return Object.values(this.gameState?.players)
+            .filter(({ country }) => country === countryName) ?? null;
     }
 }

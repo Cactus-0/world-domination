@@ -26,6 +26,6 @@ declare interface IGameState {
     year: number;
     defaults: IDefaults;
     phase: GamePhase;
-    countries: ICountry[];
-    players: IPlayer[]
+    countries: Dict<ICountry>;
+    players: Dict<IPlayer>;
 }

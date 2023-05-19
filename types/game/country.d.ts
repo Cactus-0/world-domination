@@ -13,7 +13,7 @@ declare interface ICountryData {
     readonly cities: ICityData[];
 }
 
-declare interface ICountry extends ICountryData, ICountryPublicState {
-    readonly cities: ICity[];
+declare interface ICountry extends Omit<ICountryData, 'cities'>, ICountryPublicState {
+    readonly cities: Dict<ICity>;
     private?: ICountryPrivateState;
 }

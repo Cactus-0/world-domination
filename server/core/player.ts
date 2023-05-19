@@ -14,10 +14,7 @@ export class Player<PrePhase extends boolean = true> {
         if (this.country?.name === countryName) return;
 
         const old = this.country;
-        const selection = [...this.game.countries.values()].find(({ name }) => countryName === name);
-
-        if (!selection)
-            throw new Error(`There is no countries with name ${countryName}`);
+        const selection = this.game.getCountryByName(countryName);
 
         this.country = selection;
 

@@ -1,5 +1,4 @@
 import { price } from '@shared/price';
-import { arrayToString } from '@utils/array-to-string';
 import { Country } from './country';
 import { Game } from './game-loop/game';
 
@@ -80,7 +79,7 @@ export class Order implements IOrder {
             this.ctx.country.private.ecology += this.ctx.defaults.perLevelEcologyImprovement;
 
         this.cityDevelopments.forEach(cityName => {
-            const city = this.ctx.country.cities.find(({ name }) => name === cityName);
+            const city = this.ctx.country.cities[cityName];
 
             if (!city) return;
 
@@ -88,7 +87,7 @@ export class Order implements IOrder {
         });
 
         this.buildCityShields.forEach(cityName => {
-            const city = this.ctx.country.cities.find(({ name }) => name === cityName);
+            const city = this.ctx.country.cities[cityName];
 
             if (!city) return;
 

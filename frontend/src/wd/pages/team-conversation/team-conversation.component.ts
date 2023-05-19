@@ -18,7 +18,7 @@ export class TeamConversationComponent {
     }
 
     public get perYearIncome(): number {
-        return this.client.country!.cities
+        return Object.values(this.client.country!.cities)
             .map(city => city.private?.perYearIncome!)
             .reduce((a, b) => a + b);
     }

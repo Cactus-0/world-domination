@@ -34,9 +34,18 @@ export class City implements TCity {
 
                 const sanctions = country.private.sanctionsFrom.length;
 
+                let multiplier = (
+                    1 - sanctions * game.defaults.sanctionsAffect
+                    / (Object.keys(game.countries).length - 1)
+                );
+
+                if (isNaN(multiplier) || isFinite(multiplier)) {
+                    multiplier = 1;
+                }
+
                 return Math.floor(
                     city.lifeLevel * game.defaults.maxPerYearIncome *
-                    (1 - sanctions * game.defaults.sanctionsAffect / (game.countries.size - 1))
+                    multiplier
                 );
             }
         }
